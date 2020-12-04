@@ -12,7 +12,7 @@ public class Dna {
 
     void hentVærdi() {
         for(int i = 0; i<DNAStreng.size();i++){
-            DNAStreng.add();
+
         }
     }
 }
