@@ -16,11 +16,18 @@ public class DNA {
     void assignValue() {
         for(int i = 1; i<t.getRowCount();i++){
             DNAString.add(new Item(t.getRow(i).getString(0),t.getRow(i).getInt(1),t.getRow(i).getInt(2)));
-
         }
-
     }
-  /*  public int getData(String itemName, int weight) {
+
+    void fitness(){
+        for(int i = 0; i<50;i++){
+            for(int s = 0; s<DNAString.size();s++){
+
+            }
+        }
+    }
+
+  /* public int getData(String itemName, int weight) {
         int a = 0;
         for (int i = 0; i < DNAString.size(); i++) {
             Item item = DNAString.get(i);

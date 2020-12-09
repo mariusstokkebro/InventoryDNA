@@ -8,4 +8,10 @@ public class Item {
         this.weight = weight;
         this.worth = worth;
     }
+
+    void test(){
+        System.out.print(name);
+        System.out.print(weight);
+        System.out.print(worth);
+    }
 }

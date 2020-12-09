@@ -8,7 +8,6 @@ public class Main extends PApplet{
     PApplet p;
     Table table;
     DNA dna;
-    Item stuff;
 
     @Override
     public void settings() {
@@ -18,11 +17,7 @@ public class Main extends PApplet{
     @Override
     public void setup() {
         table = loadTable("backpack.csv");
-
-        dna = new DNA(this, table);
-        dna.assignValue();
-        println(dna.DNAString.get(1).name);
-
+        dna = new DNA(this, table );
     }
 
     @Override
