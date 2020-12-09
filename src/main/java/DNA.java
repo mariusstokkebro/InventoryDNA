@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class DNA {
     PApplet p;
     ArrayList<Item> DNAString = new ArrayList<Item>();
+    ArrayList<Backpack> backpack = new ArrayList<Backpack>();
     Table t;
 
     DNA(PApplet p, Table t) {
@@ -21,8 +22,9 @@ public class DNA {
 
     void backpack(){
         for(int i = 0; i<50;i++){
+
             for(int s = 0; s<DNAString.size();s++){
-            
+
             }
         }
     }
