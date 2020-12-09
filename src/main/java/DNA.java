@@ -22,7 +22,7 @@ public class DNA {
     void backpack(){
         for(int i = 0; i<50;i++){
             for(int s = 0; s<DNAString.size();s++){
-
+            
             }
         }
     }
