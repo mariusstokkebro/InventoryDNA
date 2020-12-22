@@ -4,6 +4,8 @@ import processing.data.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.swing.UIManager.get;
+
 public class DNA {
     PApplet p;
     ArrayList<Item> DNAString = new ArrayList<Item>();
@@ -11,6 +13,8 @@ public class DNA {
     List<List<Item>> backpack2 = new ArrayList<List<Item>>();
     Table t;
     int itemInBackpack = 0;
+
+
     DNA(PApplet p, Table t) {
         this.p = p;
         this.t=t;
@@ -25,10 +29,13 @@ public class DNA {
     void backpack(){
         for(int i = 0; i<50;i++){
             List<Item> list = new ArrayList<>();
-
+            int totalWeight=0;
+            int totalWorth=0;
             for(int s = 0; s<DNAString.size();s++){
              itemInBackpack = (int) p.random(0,2);
+
                 if(itemInBackpack == 1) {
+
                     list.add(new Item(DNAString.get(s).name, DNAString.get(s).weight, DNAString.get(s).worth));
                 }
                 else{
@@ -36,18 +43,24 @@ public class DNA {
                 }
             }
             backpack2.add(list);
+
         }
        p.println(backpack2.get(2));
     }
 
-  /* public int getData(String itemName, int weight) {
-        int a = 0;
-        for (int i = 0; i < DNAString.size(); i++) {
-            Item item = DNAString.get(i);
-            if (itemName.equalsIgnoreCase(Item.name) && weight == Item.weight) {
-                a = DNAString.get(i).worth;
-            }
+    /*int getTotalWeight(ArrayList a){
+        int totalWeight=0;
+        for(int i = 0; i<a.size();i++){
+
         }
-        return a;
+    }
+
+    int getTotalWorth(ArrayList a){
+        int totalWorth=0;
+        for(int i = 0; i<a.size();i++){
+            totalWorth += a.get(i);
+        }
     }*/
+
+
 }
