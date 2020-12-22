@@ -11,8 +11,7 @@ import static javax.swing.UIManager.get;
 public class DNA {
     PApplet p;
     ArrayList<Item> DNAString = new ArrayList<Item>();
-    ArrayList<Backpack> backpack = new ArrayList<Backpack>();
-    List<List<Item>> backpack2 = new ArrayList<List<Item>>();
+    List<List<Item>> backpack = new ArrayList<List<Item>>();
     IntList totalWeight = new IntList();
     IntList totalWorth = new IntList();
     FloatList totalFitness = new FloatList();
@@ -33,7 +32,7 @@ public class DNA {
         }
     }
 
-    void backpack(){
+  public void backpack(){
         for(int i = 0; i<50;i++){
             List<Item> list = new ArrayList<>();
             int weight=0;
@@ -52,12 +51,13 @@ public class DNA {
             }
             this.totalWeight.append(weight);
             this.totalWorth.append(worth);
-            backpack2.add(list);
+            backpack.add(list);
 
         }
-       p.println(backpack2.get(2));
+       p.println(backpack.get(2));
         p.println(totalWeight);
         p.println(totalWorth);
+
     }
 void fitness(){
     float fitness =0;
@@ -85,10 +85,21 @@ void fitness(){
 
 
     }
-    p.println(totalFitnessPercentage.sum());
-    p.println(totalFitness);
+
 }
 
+DNA crossover(DNA partner){
+DNA child  = new DNA(p, t);
+    int midpoint = (int)(p.random(backpack.size()));
+    for (int i = 0; i < backpack.size(); i++) {
+        for(int s = 0; s<backpack.get(i).size();s++){
+            if (s > midpoint) child.backpack.get(i).get(s) = backpack.get(i).get(s);
+            else child.backpack.get(i).get(s) = partner.backpack.get(i).get(s);
+        }
 
+    }
+
+    return child;
+}
 
 }
