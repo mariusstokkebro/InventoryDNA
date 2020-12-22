@@ -17,6 +17,7 @@ public class DNA {
     IntList totalWorth = new IntList();
     FloatList totalFitness = new FloatList();
     FloatList totalFitnessPercentage = new FloatList();
+    List<Float> superiorJeans = new ArrayList<Float>();
 
     Table t;
     int itemInBackpack = 0;
@@ -59,6 +60,7 @@ public class DNA {
     }
 
     void fitness() {
+
         float fitness = 0;
         float totalFitnessValue = 0;
         for (int i = 0; i < totalWeight.size(); i++) {
@@ -77,18 +79,22 @@ public class DNA {
                 totalFitnessValue += totalFitness.get(i);
             }
             for (int i = 0; i < totalFitness.size(); i++) {
-                totalFitnessPercentage.append(totalFitness.get(i) / totalFitnessValue * 100);
-
+                totalFitnessPercentage.append(totalFitness.get(i) / totalFitnessValue * 1000);
+                System.out.println(totalFitnessPercentage);
             }
 
 
         }
-
+        for(int i = 1; i<backpack.size();i++){
+            totalFitnessPercentage.get(i);
+            if(totalFitnessPercentage.get(i)>totalFitnessPercentage.get(i-1)){
+                superiorJeans.add(totalFitnessPercentage.get(i));
+            }
+        }
     }
 
-    DNA crossover(DNA partner) {
+    /*DNA crossover(DNA partner) {
         DNA child = new DNA(this.p, t);
-        child.assignValue();
         child.backpack();
         int midpoint = (int) (p.random(0, 2));
         for (int i = 0; i < backpack.size()-1; i++) {
@@ -96,24 +102,36 @@ public class DNA {
             for (int s = 0; s < backpack.get(i).size() - 1; s++) {
 
                 if (midpoint == 0) {
-                    child.backpack.get(i).set(s, backpack.get(i).get(s));
+                    child.backpack.get(i).add(backpack.get(i).get(s));
 
                 } else {
-                    child.backpack.get(i).set(s, partner.backpack.get(i).get(s));
+                    child.backpack.get(i).add(partner.backpack.get(i).get(s));
                 }
-
             }
         }
         return child;
-    }
+    }*/
 
+    void crossover2ElectricBoogaloo(DNA partner) {
+        List<Item> newGeneration = new ArrayList<>();
+        int midpoint = (int) (p.random(0, 2));
+        for (int i = 0; i < backpack.size() - 1; i++) {
+            for (int s = 0; s < backpack.get(i).size() - 1; s++) {
+                if (midpoint == 0) {
+                    newGeneration.add(backpack.get(i).get(s));
+                } else {
+                    newGeneration.add(partner.backpack.get(i).get(s));
+                }
+            }
+        }
+    }
 
     void mutate() {
         float mutationRate = (float) 0.01;
 
         for (int i = 0; i < backpack.get(i).size(); i++) {
-            if ((float) p.random(1) < mutationRate) {
-                backpack.get(i).set(i,DNAString.get((int) p.random(0,DNAString.size())));
+            if (p.random(1) < mutationRate) {
+                backpack.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
             }
         }
     }
