@@ -86,18 +86,23 @@ public class DNA {
         DNA child = new DNA(this.p, t);
         child.assignValue();
         child.backpack();
-        int midpoint = (int) (p.random(0,2));
+        int midpoint = (int) (p.random(0, 2));
         for (int i = 0; i < backpack.size()-1; i++) {
+
             for (int s = 0; s < backpack.get(i).size()-1; s++) {
-                System.out.println("S: " + s + "I: " + i);
+                try{
+                    if (midpoint == 0) {
+                        child.backpack.get(i).set(s,backpack.get(i).get(s));
 
-
-                if (midpoint == 0) {
-                    child.backpack.get(i).set(s, backpack.get(i).get(s));
-                } else {
-                    child.backpack.get(i).set(s, partner.backpack.get(i).get(s));
+                    } else {
+                        child.backpack.get(i).set(s,partner.backpack.get(i).get(s));
+                    }
+                }catch (IndexOutOfBoundsException t){
+                    System.out.println(t);
                 }
+
             }
+
         }
 
         return child;
