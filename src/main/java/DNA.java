@@ -34,7 +34,7 @@ public class DNA {
     }
 
     public void backpack() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 50; i++) {
             List<Item> list = new ArrayList<>();
             int weight = 0;
             int worth = 0;
@@ -54,9 +54,7 @@ public class DNA {
             backpack.add(list);
 
         }
-        PApplet.println(backpack.get(2));
-        PApplet.println(totalWeight);
-        PApplet.println(totalWorth);
+
 
     }
 
@@ -80,7 +78,7 @@ public class DNA {
             }
             for (int i = 0; i < totalFitness.size(); i++) {
                 totalFitnessPercentage.append(totalFitness.get(i) / totalFitnessValue * 100);
-                PApplet.println(totalFitnessPercentage);
+
             }
 
 
@@ -90,13 +88,15 @@ public class DNA {
 
     DNA crossover(DNA partner) {
         DNA child = new DNA(this.p, t);
+        child.assignValue();
+        child.backpack();
         int midpoint = (int) (p.random(0, 2));
         for (int i = 0; i < backpack.size(); i++) {
             for (int s = 0; s < backpack.get(i).size(); s++) {
                 if (midpoint == 0) {
-                    child.backpack.get(i).set(s, backpack.get(i).get(s));
+                    child.backpack.get(i).set(s,backpack.get(i).get(s));
 
-                } else child.backpack.get(i).set(s, partner.backpack.get(i).get(s));
+                } else child.backpack.get(i).set(s,partner.backpack.get(i).get(s));
             }
 
         }
