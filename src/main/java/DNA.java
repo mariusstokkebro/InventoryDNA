@@ -18,7 +18,7 @@ public class DNA {
     FloatList totalFitness = new FloatList();
     FloatList totalFitnessPercentage = new FloatList();
     List<List<Item>> superiorJeans = new ArrayList<List<Item>>();
-    List<Item> newGeneration = new ArrayList<>();
+    List<List<Item>> newGeneration = new ArrayList<List<Item>>();
 
     Table t;
     int itemInBackpack = 0;
@@ -120,9 +120,9 @@ public class DNA {
         for (int i = 0; i < superiorJeans.size() - 1; i++) {
             for (int s = 0; s < superiorJeans.get(i).size() - 1; s++) {
                 if (midpoint == 0) {
-                    newGeneration.add(superiorJeans.get(i).get(s));
+                    newGeneration.add(superiorJeans.get(i));
                 } else {
-                    newGeneration.add(partner.superiorJeans.get(i).get(s));
+                    newGeneration.add(partner.superiorJeans.get(i));
                 }
             }
         }
@@ -131,9 +131,9 @@ public class DNA {
     void mutate() {
         float mutationRate = (float) 0.01;
 
-        for (int i = 0; i < backpack.get(i).size(); i++) {
+        for (int i = 0; i < newGeneration.get(i).size(); i++) {
             if (p.random(1) < mutationRate) {
-                backpack.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
+                newGeneration.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
             }
         }
     }
