@@ -29,6 +29,7 @@ DNA dna2;
         dna.backpack();
         dna.fitness();
         dna.crossover2ElectricBoogaloo(dna2);
+        dna.mutate();
 
     }
 

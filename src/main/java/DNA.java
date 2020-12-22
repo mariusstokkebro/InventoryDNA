@@ -17,7 +17,8 @@ public class DNA {
     IntList totalWorth = new IntList();
     FloatList totalFitness = new FloatList();
     FloatList totalFitnessPercentage = new FloatList();
-    List<Float> superiorJeans = new ArrayList<Float>();
+    List<List<Item>> superiorJeans = new ArrayList<List<Item>>();
+    List<Item> newGeneration = new ArrayList<>();
 
     Table t;
     int itemInBackpack = 0;
@@ -88,9 +89,11 @@ public class DNA {
         for(int i = 1; i<backpack.size();i++){
             totalFitnessPercentage.get(i);
             if(totalFitnessPercentage.get(i)>totalFitnessPercentage.get(i-1)){
-                superiorJeans.add(totalFitnessPercentage.get(i));
+                superiorJeans.add(backpack.get(i));
+
             }
         }
+        System.out.println(superiorJeans);
     }
 
     /*DNA crossover(DNA partner) {
@@ -113,14 +116,13 @@ public class DNA {
     }*/
 
     void crossover2ElectricBoogaloo(DNA partner) {
-        List<Item> newGeneration = new ArrayList<>();
         int midpoint = (int) (p.random(0, 2));
-        for (int i = 0; i < backpack.size() - 1; i++) {
-            for (int s = 0; s < backpack.get(i).size() - 1; s++) {
+        for (int i = 0; i < superiorJeans.size() - 1; i++) {
+            for (int s = 0; s < superiorJeans.get(i).size() - 1; s++) {
                 if (midpoint == 0) {
-                    newGeneration.add(backpack.get(i).get(s));
+                    newGeneration.add(superiorJeans.get(i).get(s));
                 } else {
-                    newGeneration.add(partner.backpack.get(i).get(s));
+                    newGeneration.add(partner.superiorJeans.get(i).get(s));
                 }
             }
         }
