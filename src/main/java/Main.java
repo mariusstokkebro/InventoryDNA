@@ -18,6 +18,9 @@ public class Main extends PApplet{
     public void setup() {
         table = loadTable("backpack.csv");
         dna = new DNA(this, table );
+        dna.assignValue();
+        dna.backpack();
+
     }
 
     @Override

@@ -10,7 +10,7 @@ public class DNA {
     ArrayList<Backpack> backpack = new ArrayList<Backpack>();
     List<List<Item>> backpack2 = new ArrayList<List<Item>>();
     Table t;
-
+    int itemInBackpack = 0;
     DNA(PApplet p, Table t) {
         this.p = p;
         this.t=t;
@@ -27,10 +27,17 @@ public class DNA {
             List<Item> list = new ArrayList<>();
 
             for(int s = 0; s<DNAString.size();s++){
+             itemInBackpack = (int) p.random(0,2);
+                if(itemInBackpack == 1) {
+                    list.add(new Item(DNAString.get(s).name, DNAString.get(s).weight, DNAString.get(s).worth));
+                }
+                else{
 
+                }
             }
-            Backpack2.add
+            backpack2.add(list);
         }
+       p.println(backpack2.get(2));
     }
 
   /* public int getData(String itemName, int weight) {
