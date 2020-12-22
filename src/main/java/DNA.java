@@ -90,11 +90,13 @@ void fitness(){
 
 DNA crossover(DNA partner){
 DNA child  = new DNA(p, t);
-    int midpoint = (int)(p.random(backpack.size()));
+    int midpoint = (int)(p.random(0,2));
     for (int i = 0; i < backpack.size(); i++) {
         for(int s = 0; s<backpack.get(i).size();s++){
-            if (s > midpoint) child.backpack.get(i).get(s) = backpack.get(i).get(s);
-            else child.backpack.get(i).get(s) = partner.backpack.get(i).get(s);
+            if (midpoint == 0){ child.backpack.get(i).set(s,backpack.get(i).get(s));
+
+            }
+            else child.backpack.get(i).set(s,partner.backpack.get(i).get(s));
         }
 
     }
