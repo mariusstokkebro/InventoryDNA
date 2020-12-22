@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.data.FloatList;
 import processing.data.IntList;
 import processing.data.Table;
 
@@ -14,6 +15,7 @@ public class DNA {
     List<List<Item>> backpack2 = new ArrayList<List<Item>>();
     IntList totalWeight = new IntList();
     IntList totalWorth = new IntList();
+    FloatList totalFitness = new FloatList();
 
     Table t;
     int itemInBackpack = 0;
@@ -56,20 +58,24 @@ public class DNA {
         p.println(totalWeight);
         p.println(totalWorth);
     }
-
-    /*int getTotalWeight(ArrayList a){
-        int totalWeight=0;
-        for(int i = 0; i<a.size();i++){
+void fitness(){
+    float fitness =0;
+    for(int i = 0; i<totalWeight.size(); i++){
+        fitness = 0;
+        if(totalWeight.get(i)>=5000){
+            fitness = 0;
+        }
+        else {
+            fitness += totalWeight.get(i);
+            fitness += totalWorth.get(i);
 
         }
+        totalFitness.append(fitness);
     }
 
-    int getTotalWorth(ArrayList a){
-        int totalWorth=0;
-        for(int i = 0; i<a.size();i++){
-            totalWorth += a.get(i);
-        }
-    }*/
+    p.println(totalFitness);
+}
+
 
 
 }

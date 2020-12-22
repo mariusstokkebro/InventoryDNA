@@ -20,6 +20,7 @@ public class Main extends PApplet{
         dna = new DNA(this, table );
         dna.assignValue();
         dna.backpack();
+        dna.fitness();
 
     }
 
