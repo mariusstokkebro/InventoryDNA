@@ -16,6 +16,7 @@ public class DNA {
     IntList totalWeight = new IntList();
     IntList totalWorth = new IntList();
     FloatList totalFitness = new FloatList();
+    FloatList totalFitnessPercentage = new FloatList();
 
     Table t;
     int itemInBackpack = 0;
@@ -60,6 +61,7 @@ public class DNA {
     }
 void fitness(){
     float fitness =0;
+    float totalFitnessValue = 0;
     for(int i = 0; i<totalWeight.size(); i++){
         fitness = 0;
         if(totalWeight.get(i)>=5000){
@@ -72,7 +74,18 @@ void fitness(){
         }
         totalFitness.append(fitness);
     }
+    if(totalFitness.size()==totalWeight.size()){
+        for(int i=0;i<totalFitness.size();i++){
+            totalFitnessValue+=totalFitness.get(i);
+        }
+        for(int i=0;i<totalFitness.size();i++){
+            totalFitnessPercentage.append(totalFitness.get(i)/totalFitnessValue*100);
+            p.println(totalFitnessPercentage);
+        }
 
+
+    }
+    p.println(totalFitnessPercentage.sum());
     p.println(totalFitness);
 }
 
