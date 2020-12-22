@@ -68,8 +68,8 @@ public class DNA {
             } else {
                 fitness += totalWeight.get(i);
                 fitness += totalWorth.get(i);
-
             }
+
             totalFitness.append(fitness);
         }
         if (totalFitness.size() == totalWeight.size()) {
@@ -78,12 +78,8 @@ public class DNA {
             }
             for (int i = 0; i < totalFitness.size(); i++) {
                 totalFitnessPercentage.append(totalFitness.get(i) / totalFitnessValue * 100);
-
             }
-
-
         }
-
     }
 
     DNA crossover(DNA partner) {
@@ -91,14 +87,14 @@ public class DNA {
         child.assignValue();
         child.backpack();
         int midpoint = (int) (p.random(0, 2));
-        for (int i = 0; i < backpack.size(); i++) {
-            for (int s = 0; s < backpack.get(i).size(); s++) {
+        for (int i = 0; i < child.backpack.size(); i++) {
+            for (int s = 0; s < child.backpack.get(i).size(); s++) {
                 if (midpoint == 0) {
-                    child.backpack.get(i).set(s,backpack.get(i).get(s));
-
-                } else child.backpack.get(i).set(s,partner.backpack.get(i).get(s));
+                    child.backpack.get(i).set(s, backpack.get(i).get(s));
+                } else {
+                    child.backpack.get(i).set(s, partner.backpack.get(i).get(s));
+                }
             }
-
         }
 
         return child;
@@ -109,8 +105,8 @@ public class DNA {
         float mutationRate = (float) 0.01;
 
         for (int i = 0; i < backpack.get(i).size(); i++) {
-            if ((float) p.random(1) < mutationRate) {
-                backpack.get(i).set(i,DNAString.get((int) p.random(0,DNAString.size())));
+            if (p.random(1) < mutationRate) {
+                backpack.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
             }
         }
     }
