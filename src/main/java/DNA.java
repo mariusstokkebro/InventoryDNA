@@ -34,7 +34,7 @@ public class DNA {
     }
 
     public void backpack() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 1; i++) {
             List<Item> list = new ArrayList<>();
             int weight = 0;
             int worth = 0;
