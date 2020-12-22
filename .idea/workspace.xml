@@ -22,9 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da4a3c3a-ef49-4b21-a16c-5569f65de921" name="Default Changelist" comment="backpack 2 is added">
+    <list default="true" id="da4a3c3a-ef49-4b21-a16c-5569f65de921" name="Default Changelist" comment="Totals are added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Backpack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backpack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DNA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +68,20 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="InventoryDNA" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\frede\AppData\Roaming\Subversion</configuration>
@@ -95,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607514894895</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Totals are added">
+      <created>1608636136584</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608636136584</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,7 +134,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fitness funktion" />
     <MESSAGE value="backpack 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="backpack 2" />
+    <MESSAGE value="Totals are added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Totals are added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1607514738963">
@@ -142,10 +163,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607083780364" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607514895890">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1608636140412">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607514895890" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608636140412" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608631773215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
