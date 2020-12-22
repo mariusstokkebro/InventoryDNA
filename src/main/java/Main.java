@@ -9,8 +9,8 @@ public class Main extends PApplet{
     }
     PApplet p;
     Table table;
-    DNA[] population = new DNA[10];
-
+   DNA dna;
+DNA dna2;
     @Override
     public void settings() {
 
@@ -19,43 +19,23 @@ public class Main extends PApplet{
     @Override
     public void setup() {
         table = loadTable("backpack.csv");
-        for (int i = 0; i < population.length; i++) {
-            population[i] = new DNA(this,table);
-        }
+        dna = new DNA(this,table);
+        dna2 = new DNA(this, table);
+        dna2.assignValue();
+        dna2.backpack();
+        dna2.fitness();
+
+        dna.assignValue();
+        dna.backpack();
+        dna.fitness();
+        dna.crossover(dna2);
+
 
 
     }
 
     @Override
     public void draw() {
-        for (int i = 0; i < population.length; i++) {
-            population[i].assignValue();
-            population[i].backpack();
-            population[i].fitness();
 
-        }
-
-        ArrayList<DNA> matingPool = new ArrayList<>();
-
-        for (int i = 0; i < population.length; i++) {
-            int n = (int) population[i].totalFitnessPercentage.get(0);
-            for (int j = 0; j < n; j++) {
-                matingPool.add(population[i]);
-            }
-
-        }
-            for (int i = 0; i < population.length; i++) {
-                int a = (int)(random(matingPool.size()));
-                int b = (int)(random(matingPool.size()));
-                DNA partnerA = matingPool.get(a);
-                DNA partnerB = matingPool.get(b);
-
-                DNA child = partnerA.crossover(partnerB);
-
-                child.mutate();
-
-                population[i] = child;
-
-        }
     }
 }
