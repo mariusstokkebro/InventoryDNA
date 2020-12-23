@@ -57,7 +57,7 @@ public class DNA {
 
         for (int i = 0; i < backpacks.size(); i++) {
             Backpack b = backpacks.get(i);
-            if (b.getWeight() <= 5000) {
+            if (b.getWeight() < 5000) {
                 bestJeans.add(backpacks.get(i));
             }
         }
@@ -83,6 +83,11 @@ public class DNA {
             Backpack superJeans = backpacks.get(maxIdx);
             backpacks.remove(maxIdx);
             p.println(backpacks.size());
+            if(backpacks.size()==1){
+                p.clear();
+                p.text("Worth is " + backpacks.get(0).getWorth(),100,100);
+                p.text("Weight is " + backpacks.get(0).getWeight(),100,130);
+            }
             return superJeans;
         }
         return null;
@@ -104,6 +109,7 @@ public class DNA {
                     Item item = new Item(parent2.backPack.get((int)p.random(0,parent2.backPack.size())));
                     child.addItemToBackPack(item);
                 }
+
 
             }
 

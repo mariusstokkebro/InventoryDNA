@@ -13,11 +13,12 @@ public class Main extends PApplet{
 DNA dna2;
     @Override
     public void settings() {
-
+        size(500,500);
     }
 
     @Override
     public void setup() {
+        background(0);
         table = loadTable("backpack.csv");
         dna = new DNA(this,table);
 
@@ -29,6 +30,7 @@ DNA dna2;
             dna.fitness();
             for(int i= 0; i<5;i++){
                 dna.babytime();
+
             }
 
 
