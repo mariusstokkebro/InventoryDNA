@@ -98,10 +98,10 @@ public class DNA {
             for(int i = 0; i<parent1.backPack.size(); ++i) {
 
                 if(Math.random() > .5){
-                    Item item = new Item(parent1.backPack.get(i));
+                    Item item = new Item(parent1.backPack.get(0));
                     child.addItemToBackPack(item);
                 } else {
-                    Item item = new Item(parent2.backPack.get(i));
+                    Item item = new Item(parent2.backPack.get((int)p.random(0,parent2.backPack.size())));
                     child.addItemToBackPack(item);
                 }
 
