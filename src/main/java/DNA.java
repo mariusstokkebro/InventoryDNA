@@ -12,13 +12,7 @@ import static org.apache.commons.lang.RandomStringUtils.random;
 public class DNA {
     PApplet p;
     ArrayList<Item> DNAString = new ArrayList<Item>();
-    List<List<Item>> backpack = new ArrayList<List<Item>>();
-    IntList totalWeight = new IntList();
-    IntList totalWorth = new IntList();
-    FloatList totalFitness = new FloatList();
-    FloatList totalFitnessPercentage = new FloatList();
-    List<List<Item>> superiorJeans = new ArrayList<List<Item>>();
-    List<List<Item>> newGeneration = new ArrayList<List<Item>>();
+    ArrayList<Backpack> backpacks = new ArrayList<Backpack>();
 
     Table t;
     int itemInBackpack = 0;
@@ -30,129 +24,114 @@ public class DNA {
     }
 
 
-
-       
-
-
-        void assignValue () {
+    void assignValue() {
         for (int i = 1; i < t.getRowCount(); i++) {
             DNAString.add(new Item(t.getRow(i).getString(0), t.getRow(i).getInt(1), t.getRow(i).getInt(2)));
         }
     }
 
-        public void backpack () {
-        for (int i = 0; i < 50; i++) {
-            List<Item> list = new ArrayList<>();
-            int weight = 0;
-            int worth = 0;
+    public void backpack(int amountBp) {
+        for (int i = 0; i <amountBp ; i++) {
+
+            Backpack backpack = new Backpack(p);
+            backpacks.add(backpack);
             for (int s = 0; s < DNAString.size(); s++) {
                 itemInBackpack = (int) p.random(0, 2);
 
                 if (itemInBackpack == 1) {
-                    list.add(new Item(DNAString.get(s).name, DNAString.get(s).weight, DNAString.get(s).worth));
-                    weight += DNAString.get(s).weight;
-                    worth += DNAString.get(s).worth;
+                    backpack.addItemToBackPack(new Item(DNAString.get(s).name, DNAString.get(s).weight, DNAString.get(s).worth));
+
                 } else {
 
                 }
             }
-            this.totalWeight.append(weight);
-            this.totalWorth.append(worth);
-            backpack.add(list);
+
 
         }
 
 
     }
 
-        void fitness () {
+    void removeBigBackpacks() {
+        ArrayList<Backpack> bestJeans = new ArrayList<Backpack>();
 
-        float fitness = 0;
-        float totalFitnessValue = 0;
-        for (int i = 0; i < totalWeight.size(); i++) {
-            fitness = 0;
-            if (totalWeight.get(i) >= 5000) {
-                fitness = 0;
-            } else {
-                fitness += totalWeight.get(i);
-                fitness += totalWorth.get(i);
-
-            }
-            totalFitness.append(fitness);
-        }
-        if (totalFitness.size() == totalWeight.size()) {
-            for (int i = 0; i < totalFitness.size(); i++) {
-                totalFitnessValue += totalFitness.get(i);
-            }
-            for (int i = 0; i < totalFitness.size(); i++) {
-                totalFitnessPercentage.append(totalFitness.get(i) / totalFitnessValue * 1000);
-                System.out.println(totalFitnessPercentage);
-            }
-
-
-        }
-        for (int i = 0; i < backpack.size(); i++) {
-            totalFitnessPercentage.get(i);
-            if(i >0) {
-                if (totalFitnessPercentage.get(i) > totalFitnessPercentage.get(i - 1)) {
-                    superiorJeans.add(backpack.get(i));
-
-                }
-            }
-            if(i==0){
-                superiorJeans.add(backpack.get(i));
+        for (int i = 0; i < backpacks.size(); i++) {
+            Backpack b = backpacks.get(i);
+            if (b.getWeight() <= 5000) {
+                bestJeans.add(backpacks.get(i));
             }
         }
-        System.out.println(superiorJeans.size());
+
+        backpacks = bestJeans;
     }
 
-    /*DNA crossover(DNA partner) {
-        DNA child = new DNA(this.p, t);
-        child.backpack();
+    Backpack fitness() {
+        int maxWorth = 0;
+        int maxIdx = -1;
+
+
+        for (int i = 0; i < backpacks.size(); ++i) {
+            Backpack backpack = backpacks.get(i);
+
+            if (backpack.getWorth() > maxWorth) {
+                maxIdx = i;
+                maxWorth = backpack.getWorth();
+            }
+        }
+
+        if (maxIdx >= 0) {
+            Backpack superJeans = backpacks.get(maxIdx);
+            backpacks.remove(maxIdx);
+            p.println(backpacks.size());
+            return superJeans;
+        }
+        return null;
+
+    }
+
+
+
+
+        Backpack crossover2ElectricBoogaloo (Backpack parent1, Backpack parent2){
         int midpoint = (int) (p.random(0, 2));
-        for (int i = 0; i < backpack.size()-1; i++) {
+        Backpack child = new Backpack(p);
+            for(int i = 0; i<parent1.backPack.size(); ++i) {
 
-            for (int s = 0; s < backpack.get(i).size() - 1; s++) {
-
-                if (midpoint == 0) {
-                    child.backpack.get(i).add(backpack.get(i).get(s));
-
+                if(Math.random() > .5){
+                    Item item = new Item(parent1.backPack.get(i));
+                    child.addItemToBackPack(item);
                 } else {
-                    child.backpack.get(i).add(partner.backpack.get(i).get(s));
+                    Item item = new Item(parent2.backPack.get(i));
+                    child.addItemToBackPack(item);
                 }
-            }
-        }
-        return child;
-    }*/
 
-        void crossover2ElectricBoogaloo (DNA partner){
-        int midpoint = (int) (p.random(0, 2));
-        for (int i = 0; i < superiorJeans.size() - 1; i++) {
-            for (int s = 0; s < superiorJeans.get(i).size() - 1; s++) {
-                if (midpoint == 0) {
-                    newGeneration.add(superiorJeans.get(i));
-                } else {
-                    newGeneration.add(partner.superiorJeans.get(i));
-                }
             }
+
+            return child;
         }
-        p.println(newGeneration.size());
-    }
+        void babytime(){
+            ArrayList<Backpack> newGeneration = new ArrayList<Backpack>();
+            for (int i=0; i<500; ++i) {
+                if (backpacks.size() < 2)
+                    break;
 
-        void mutate () {
-        float mutationRate = (float) 0.01;
+                Backpack parent1 = fitness();
+                Backpack parent2 = fitness();
 
-        for (int i = 0; i < newGeneration.get(i).size(); i++) {
-            if (p.random(1) < mutationRate) {
-                newGeneration.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
+                Backpack bpChild = crossover2ElectricBoogaloo(parent1, parent2);
+                bpChild.mutate();
+
+                newGeneration.add(parent1);
+                newGeneration.add(parent2);
+                newGeneration.add(bpChild);
             }
+
+            backpacks = newGeneration;
+            removeBigBackpacks();
         }
-        for(int i =0;i<backpack.size();i++){
-            backpack.remove(i);
-        }
-        for(int i =0;i<newGeneration.size();i++){
-            backpack.add(newGeneration.get(i));
-        }
-    }
+
+
+
+
 
 }
