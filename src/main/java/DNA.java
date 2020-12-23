@@ -85,6 +85,7 @@ public class DNA {
             p.println(backpacks.size());
             if(backpacks.size()==1){
                 p.clear();
+                p.text("The best backpack data:",100,70);
                 p.text("Worth is " + backpacks.get(0).getWorth(),100,100);
                 p.text("Weight is " + backpacks.get(0).getWeight(),100,130);
             }
