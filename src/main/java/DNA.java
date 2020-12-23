@@ -29,13 +29,18 @@ public class DNA {
         this.t = t;
     }
 
-    void assignValue() {
+
+
+       
+
+
+        void assignValue () {
         for (int i = 1; i < t.getRowCount(); i++) {
             DNAString.add(new Item(t.getRow(i).getString(0), t.getRow(i).getInt(1), t.getRow(i).getInt(2)));
         }
     }
 
-    public void backpack() {
+        public void backpack () {
         for (int i = 0; i < 50; i++) {
             List<Item> list = new ArrayList<>();
             int weight = 0;
@@ -60,7 +65,7 @@ public class DNA {
 
     }
 
-    void fitness() {
+        void fitness () {
 
         float fitness = 0;
         float totalFitnessValue = 0;
@@ -86,14 +91,19 @@ public class DNA {
 
 
         }
-        for(int i = 1; i<backpack.size();i++){
+        for (int i = 0; i < backpack.size(); i++) {
             totalFitnessPercentage.get(i);
-            if(totalFitnessPercentage.get(i)>totalFitnessPercentage.get(i-1)){
-                superiorJeans.add(backpack.get(i));
+            if(i >0) {
+                if (totalFitnessPercentage.get(i) > totalFitnessPercentage.get(i - 1)) {
+                    superiorJeans.add(backpack.get(i));
 
+                }
+            }
+            if(i==0){
+                superiorJeans.add(backpack.get(i));
             }
         }
-        System.out.println(superiorJeans);
+        System.out.println(superiorJeans.size());
     }
 
     /*DNA crossover(DNA partner) {
@@ -115,7 +125,7 @@ public class DNA {
         return child;
     }*/
 
-    void crossover2ElectricBoogaloo(DNA partner) {
+        void crossover2ElectricBoogaloo (DNA partner){
         int midpoint = (int) (p.random(0, 2));
         for (int i = 0; i < superiorJeans.size() - 1; i++) {
             for (int s = 0; s < superiorJeans.get(i).size() - 1; s++) {
@@ -126,9 +136,10 @@ public class DNA {
                 }
             }
         }
+        p.println(newGeneration.size());
     }
 
-    void mutate() {
+        void mutate () {
         float mutationRate = (float) 0.01;
 
         for (int i = 0; i < newGeneration.get(i).size(); i++) {
@@ -136,5 +147,12 @@ public class DNA {
                 newGeneration.get(i).set(i, DNAString.get((int) p.random(0, DNAString.size())));
             }
         }
+        for(int i =0;i<backpack.size();i++){
+            backpack.remove(i);
+        }
+        for(int i =0;i<newGeneration.size();i++){
+            backpack.add(newGeneration.get(i));
+        }
     }
+
 }

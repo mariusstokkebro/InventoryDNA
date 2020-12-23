@@ -21,15 +21,17 @@ DNA dna2;
         table = loadTable("backpack.csv");
         dna = new DNA(this,table);
         dna2 = new DNA(this, table);
-        dna2.assignValue();
-        dna2.backpack();
-        dna2.fitness();
 
-        dna.assignValue();
-        dna.backpack();
-        dna.fitness();
-        dna.crossover2ElectricBoogaloo(dna2);
-        dna.mutate();
+            dna2.assignValue();
+            dna2.backpack();
+            dna2.fitness();
+            dna.assignValue();
+            dna.backpack();
+            while(dna.backpack.size()>1) {
+                dna.fitness();
+                dna.crossover2ElectricBoogaloo(dna2);
+                dna.mutate();
+            }
 
     }
 
